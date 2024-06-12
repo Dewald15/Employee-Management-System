@@ -35,4 +35,10 @@ public class EmployeeController {
                                             @PathVariable("id") String employeeId){
         return employeeService.updateEmployee(employeeDto, employeeId);
     }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public Mono<Void> deleteEmployee(@PathVariable("id") String employeeId){
+        return employeeService.deleteEmployee(employeeId);
+    }
 }
