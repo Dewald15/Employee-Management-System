@@ -126,6 +126,7 @@ spring.data.mongodb.uri=mongodb://localhost:27017/ems
 
 ## Creating the MongoDB Docker Container
 
+Install the Docker desktop application.
 To run MongoDB in a Docker container, follow these steps:
 
 ### Pull the MongoDB Docker image:
@@ -135,15 +136,43 @@ docker pull mongo
 ```
 ### Run the MongoDB container:
 ```bash
-docker run --name mongodb -d -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password mongo
+docker run -p 27017:27017 --name mongodb_container -d mongo
 ```
-This command will run MongoDB on port 27017 and set the root username and password.
+
+This is the Docker command to run the Mongo Docker image in a Docker container. 
+This command will return the docker ID which can be used to track the Docker container.
 
 ### Verify that MongoDB is running:
 ``` bash
 docker ps
 ```
 You should see the MongoDB container listed and running.
+
+### Access the MongoDB shell from the Docker container:
+```bash
+docker exec -it 1234 bash
+```
+Note that the '1234' is the first four characters of the docker ID.
+Now we have access to the Docker container using `root` user.
+
+To access the MongoDB shell, run the following command:
+```bash
+mongosh
+```
+View databases:
+```bash
+show dbs
+```
+You should see an `ems` database (after creating an employee), which is specified in `application.properties`: `spring.data.mongodb.uri=mongodb://localhost:27017/ems`
+
+Use ems database:
+```bash
+use ems
+```
+View 'employees' collection (after creating an employee):
+```bash
+db.employees.find();
+```
 
 ## Conclusion
 You have successfully set up, built, and run a Spring Boot WebFlux application with MongoDB. You can now develop, test, and deploy this application easily across different environments.
