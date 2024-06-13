@@ -48,8 +48,8 @@ pom.xml
 3. Ensure you have Java and Maven installed.
 4. Update the application.properties file with your MongoDB connection details if needed:
 ```properties
-    spring.application.name=springboot-webflux
-    spring.data.mongodb.uri=mongodb://localhost:27017/ems
+spring.application.name=springboot-webflux
+spring.data.mongodb.uri=mongodb://localhost:27017/ems
 ```
 5. Run the application using the `SpringbootWebfluxApplication` class.
 6. The application will start on port 8080 by default. You can access the API at [http://localhost:8080/api/employees](http://localhost:8080/api/employees).
